@@ -74,6 +74,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Login/Sign up 
     Sign in /Sign UP 
     Rediredct to browse page
+    Firebase Setup 
+    
 -Browse(After authentication)
         Header
         Main Moview
