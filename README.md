@@ -83,9 +83,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  create signup User Account
 -  Implement Sign in user APi
 -  created redux store with User Slice
-    store user data using store .write the code in body because we don't needs to do it in root level
-    Implemented Signout 
-    Update Profiel api call done
+-  store user data using store .write the code in header/body
+-  Implemented Signout 
+-  Update Profiel firebase api call done.
+-  move the harcoded values to the constants file 
+-  Register  TMD API and register an app and get the token
+-  Get Data from TMDB movies api
+-  creatd custom hooks for playing movies
+-  updated the store with movies data
+-  custom Hooks for Traineler Videos
+- created hooks and updated store
+- embeded the youtube video 
+    
+    
     
 -    -
 # Features

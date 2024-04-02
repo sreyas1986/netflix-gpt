@@ -1,12 +1,18 @@
 import React from 'react'
 import Header from './Header'
+import usePlayingMovies from '../Hooks/usePlayingMovies'
+import MainContainer from './MainContainer';
+
 
 const Browse = () => {
+  usePlayingMovies();
+
   return (
     
-    <div>
+    <div className='z-20'>
       <Header />
-      Browse</div>
+      <MainContainer />
+      </div>
   )
 }
 

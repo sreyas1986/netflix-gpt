@@ -3,11 +3,9 @@ import Header from './Header'
 import { CheckValidate } from '../util/CheckValidate';
 import { auth } from "../util/firebase";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile  } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../util/userSlice';
-
-
+import { bgLoginImage, imageAvatar } from '../util/constant';
 
 const Login = () => {
     const [isSigninForm,setIsSigninForm] = useState(true);
@@ -17,14 +15,14 @@ const Login = () => {
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
-    const navigate =  useNavigate();
+    
     const ToggleSignInForm=()=>{
         setIsSigninForm(!isSigninForm);
 
     }
     const SubmitSignIn=()=>{
 
-        console.log(email.current.value+password.current.value);
+        
      const validationResult = CheckValidate(email.current.value,password.current.value);
         setErrorMessage(validationResult);
         if(validationResult) return;
@@ -34,15 +32,15 @@ const Login = () => {
                 .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user);
+                
                 // update profile...
                 updateProfile(auth.currentUser, {
-                    displayName:  name.current.value , photoURL: "https://avatars.githubusercontent.com/u/4228166?v=4"
+                    displayName:  name.current.value , photoURL: ""
                   }).then(() => {
                     // Profile updated!
                     const { uid, email, displayName} = auth.currentUser;
-                    dispatch(addUser({uid:uid,email:email,displayName:displayName, photoURL: "https://avatars.githubusercontent.com/u/4228166?v=4"}));
-                    navigate("/browse");
+                    dispatch(addUser({uid:uid,email:email,displayName:displayName, photoURL: imageAvatar}));
+                    
                     // ...
                   }).catch((error) => {
                     // An error occurred
@@ -61,8 +59,9 @@ const Login = () => {
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
-              console.log(user);
-              navigate("/browse");
+              dispatch(addUser({uid:user.uid,email:user.email,displayName:user.displayName, photoURL:user.photoURL}));
+           
+            
               // ...
             })
             .catch((error) => {
@@ -79,9 +78,9 @@ const Login = () => {
   return (
    <div>
         <Header />
-        <div className='absolute'>
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/7ca5b7c7-20aa-42a8-a278-f801b0d65fa1/fb548c0a-8582-43c5-9fba-cd98bf27452f/IN-en-20240326-popsignuptwoweeks-perspective_alpha_website_large.jpg
-"  alt="bodyimage"/>
+        <div className='absolute m-0' >
+        <img 
+src={bgLoginImage}  alt="bodyimage"/>
         </div>
         <div className='w-3/12  p-12  left-96   bg-black my-36 
         absolute rounded z-10 bg-opacity-80'>
